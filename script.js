@@ -1,6 +1,7 @@
 const Choice = ["rock", "paper", "scissors"];
 let humanScore = 0, 
     computerScore = 0;
+    tieScore = 0;
 
 const getComputerChoice = () => Choice[Math.floor(Math.random() * 3)];
 
@@ -11,7 +12,7 @@ const getRoundWinner = (computerChoice, humanChoice) => {
         case "rock":
             if (humanChoice == "rock") {
                 console.log("You chose rock and computer chose rock, it's a tie!");
-                return null;
+                return 2;
             } else if (humanChoice == "paper") {
                 console.log("You chose paper and computer chose rock, you win!");
                 return 0;
@@ -26,7 +27,7 @@ const getRoundWinner = (computerChoice, humanChoice) => {
                 return 1;
             } else if (humanChoice == "paper") {
                 console.log("You chose paper and computer chose paper, it's a tie!");
-                return null;
+                return 2;
             } else {
                 console.log("You chose scissors and computer chose paper, you win!");
                 return 0;
@@ -41,8 +42,16 @@ const getRoundWinner = (computerChoice, humanChoice) => {
                 return 1;
             } else {
                 console.log("You chose scissors and computer chose scissors, it's a tie!");
-                return null;
+                return 2;
             }
     }
 }
 
+const playRound = () => {
+    let computerChoice = getComputerChoice(),
+        humanChoice = getHumanChoice();
+
+    let roundWinner = getRoundWinner(computerChoice, humanChoice);
+
+    roundWinner === 0 ? humanScore++ : roundWinner === 1 ? computerScore++ : tieScore++;
+}
