@@ -9,22 +9,40 @@ const getHumanChoice = () => Choice[parseInt(prompt("Please enter a number of th
 const getRoundWinner = (computerChoice, humanChoice) => {
     switch (computerChoice) {
         case "rock":
-            humanChoice == "rock" ? console.log("You chose rock and computer chose rock, its a tie!") : 
-            humanChoice == "paper" ? console.log("You chose paper and computer chose rock, you win!") :
-            console.log("You chose scissors and computer chose rock, you lost!");
-            break;
+            if (humanChoice == "rock") {
+                console.log("You chose rock and computer chose rock, it's a tie!");
+                return null;
+            } else if (humanChoice == "paper") {
+                console.log("You chose paper and computer chose rock, you win!");
+                return 0;
+            } else {
+                console.log("You chose scissors and computer chose rock, you lost!");
+                return 1;
+            }
 
         case "paper":
-            humanChoice == "rock" ? console.log("You chose rock and computer chose paper, you lost!") : 
-            humanChoice == "paper" ? console.log("You chose paper and computer chose rock, its a tie!") :
-            console.log("You chose scissors and computer chose rock, you win!");
-            break;
+            if (humanChoice == "rock") {
+                console.log("You chose rock and computer chose paper, you lost!");
+                return 1;
+            } else if (humanChoice == "paper") {
+                console.log("You chose paper and computer chose paper, it's a tie!");
+                return null;
+            } else {
+                console.log("You chose scissors and computer chose paper, you win!");
+                return 0;
+            }
 
         case "scissors":
-            humanChoice == "rock" ? console.log("You chose rock and computer chose rock, you win!") : 
-            humanChoice == "paper" ? console.log("You chose paper and computer chose rock, you lost!") :
-            console.log("You chose scissors and computer chose rock, its a tie!");
-            break;
+            if (humanChoice == "rock") {
+                console.log("You chose rock and computer chose scissors, you win!");
+                return 0;
+            } else if (humanChoice == "paper") {
+                console.log("You chose paper and computer chose scissors, you lost!");
+                return 1;
+            } else {
+                console.log("You chose scissors and computer chose scissors, it's a tie!");
+                return null;
+            }
     }
-} 
+}
 
