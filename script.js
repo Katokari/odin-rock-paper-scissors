@@ -1,7 +1,4 @@
 const Choice = ["rock", "paper", "scissors"];
-let humanScore = 0, 
-    computerScore = 0;
-    tieScore = 0;
 
 const getComputerChoice = () => Choice[Math.floor(Math.random() * 3)];
 
@@ -47,11 +44,31 @@ const getRoundWinner = (computerChoice, humanChoice) => {
     }
 }
 
-const playRound = () => {
-    let computerChoice = getComputerChoice(),
-        humanChoice = getHumanChoice();
+const getHowManyRounds = () => parseInt(prompt("How many round do you want to play?"));
 
-    let roundWinner = getRoundWinner(computerChoice, humanChoice);
+function playGame () {
+    let humanScore = 0, 
+        computerScore = 0;
+        tieScore = 0;
 
-    roundWinner === 0 ? humanScore++ : roundWinner === 1 ? computerScore++ : tieScore++;
+    const playRound = () => {
+        let computerChoice = getComputerChoice(),
+            humanChoice = getHumanChoice();
+    
+        let roundWinner = getRoundWinner(computerChoice, humanChoice);
+    
+        roundWinner === 0 ? humanScore++ : roundWinner === 1 ? computerScore++ : tieScore++;
+    }  
+    
+    const roundsCount = getHowManyRounds();
+    
+    for (let i = 0; i < roundsCount; i++) {
+        playRound();
+    }
+
+    const endMessage = "You won " + humanScore + " times, computer won " + computerScore + " times, with " + tieScore + " time tie, overall ";
+
+    humanScore > computerScore ? console.log(endMessage + " you won!") : computerScore > humanScore ? console.log(endMessage + " you lost!") : console.log(endMessage + " its a tie!");
 }
+
+playGame();
